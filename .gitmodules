@@ -1,0 +1,9 @@
+[submodule "uCnix"]
+	path = uCnix
+	url = https://github.com/imbluedabr/uCnix.git
+[submodule "uCnix-libc"]
+	path = uCnix-libc
+	url = https://github.com/imbluedabr/uCnix-libc.git
+[submodule "uCnix-utils"]
+	path = uCnix-utils
+	url = https://github.com/imbluedabr/uCnix-utils.git
