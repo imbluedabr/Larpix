@@ -6,26 +6,23 @@ STAGING = $(PWD)/staging
 ARCH = armv8-m
 .PHONY: kernel libc utils tools staging image clean
 kernel:
-	$(MAKE) -C ./uCnix SYSROOT=$(SYSROOT) kernel
+	$(MAKE) -C ./uCnix SYSROOT=$(SYSROOT) CONFIG=$(PWD)/kernel.config kernel
 	$(MAKE) -C ./uCnix SYSROOT=$(SYSROOT) install
 
 libc:
 	$(MAKE) -C ./uCnix-libc SYSROOT=$(SYSROOT) ARCH=$(ARCH) install
 
-utils:
+utils: libc
 	$(MAKE) -C ./uCnix-utils SYSROOT=$(SYSROOT) ARCH=$(ARCH) install
 
 tools:
 	$(MAKE) -C ./tools all
 
-staging:
-	mkdir -p $(STAGING)/bin
-	mkdir -p $(STAGING)/etc
-	mkdir -p $(STAGING)/dev
+staging: libc utils
+	cp -r ./base_root/* $(STAGING)
 	cp -r $(SYSROOT)/bin/* $(STAGING)/bin
-	cp -r $(SYSROOT)/etc/* $(STAGING)/etc
 
-image: staging
+image: staging tools
 	./tools/mkfs.elf -c -b 32 $(STAGING) rootfs.bin
 	cat $(SYSROOT)/kernel.bin rootfs.bin > image.bin
 
