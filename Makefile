@@ -22,6 +22,9 @@ tools:
 	$(MAKE) -C ./tools all
 
 staging: libc utils
+	mkdir -p $(STAGING)
+	mkdir -p $(STAGING)/bin
+	mkdir -p $(STAGING)/dev
 	cp -r ./base_root/* $(STAGING)
 	cp -r $(SYSROOT)/bin/* $(STAGING)/bin
 
