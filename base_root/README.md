@@ -1,7 +1,9 @@
 
 # Welcome to Larpix V1!
 
-This is the first release of the larpix operating system currently only for the mcxa153. It is full of bugs and doesnt evene have a package manager or suport ofr basicly anything. The following is planned for future releases:
+This is the first release of the larpix operating system currently only for the mcxa153. It is full of bugs
+and doesnt even have a package manager or suport for basicly anything. The following is planned for future
+releases:
 
 * Simple package manager
 * Bettter implementation of the core utilities
